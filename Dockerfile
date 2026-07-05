@@ -2,14 +2,13 @@ FROM n8nio/n8n:latest
 
 USER root
 
-SHELL ["/bin/sh", "-c"]
-
-RUN apk update && apk add --no-cache \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
-    py3-pip \
-    aws-cli \
+    python3-pip \
+    awscli \
     bash \
     curl \
-    jq
+    jq \
+    && rm -rf /var/lib/apt/lists/*
 
 USER node
